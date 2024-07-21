@@ -1,0 +1,24 @@
+name: Windows Chrome Remote Desktop
+
+on: 
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'Nhập lệnh: '
+        required: true
+      pincode:
+        description: 'Nhập 6 chữ số: '
+        required: true
+  
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cài các phụ thuộc cần thiết
+      run: ./i.ps1
+    - name: Bắt đầu CDP cái nhỉ
+      run: ${{ github.event.inputs.command }} --pin=${{ github.event.inputs.pincode }}
+    - name: Duy trì trạng thái
+      run: ./keep.ps1
