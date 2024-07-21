@@ -1,25 +1,29 @@
-package com.laurentiuspilca.ssia.controller;
+package com.laurentiuspilca.ssia.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class TestController {
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello!";
+    @PostMapping("/a")
+    public String postEndpointA() {
+        return "Works!";
     }
 
-    @GetMapping("/ciao")
-    public String ciao() {
-        return "Ciao!";
+    @GetMapping("/a")
+    public String getEndpointA() {
+        return "Works!";
     }
 
-
-    @GetMapping("/hola")
-    public String hola() {
-        return "Hola!";
+    @GetMapping("/a/b")
+    public String getEnpointB() {
+        return "Works!";
     }
 
+    @GetMapping("/a/b/c")
+    public String getEnpointC() {
+        return "Works!";
+    }
 }
