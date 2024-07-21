@@ -1,4 +1,4 @@
-name: Windows Chrome Remote Desktop
+name: CDP cái nhỉ
 
 on: 
   workflow_dispatch:
