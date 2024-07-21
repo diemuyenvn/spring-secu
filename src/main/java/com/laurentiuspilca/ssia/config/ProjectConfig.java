@@ -2,6 +2,7 @@ package com.laurentiuspilca.ssia.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -14,7 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ProjectConfig {
 
-
     @Bean
     public UserDetailsService userDetailsService() {
         var manager = new InMemoryUserDetailsManager();
@@ -24,7 +24,7 @@ public class ProjectConfig {
                 .roles("ADMIN")
                 .build();
 
-        var user2 = User.withUsername("jane")
+        var user2 = User.withUsername("bill")
                 .password("12345")
                 .roles("MANAGER")
                 .build();
@@ -45,14 +45,16 @@ public class ProjectConfig {
         http.httpBasic(Customizer.withDefaults());
 
         http.authorizeHttpRequests(
-            c -> c.requestMatchers("/hello").hasRole("ADMIN")
-                .requestMatchers("/ciao").hasRole("MANAGER")
-                .anyRequest().permitAll()
-            //.anyRequest().denyAll()
-            //.anyRequest().authenticated()
-            );
+            c -> c.requestMatchers(HttpMethod.GET, "/a").authenticated()
+                .requestMatchers(HttpMethod.POST, "/a").permitAll()
+                .anyRequest().denyAll()
+        );
+
+
+        http.csrf(
+            c -> c.disable()
+        );
 
         return http.build();
     }
-
 }
