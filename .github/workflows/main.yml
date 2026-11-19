@@ -18,6 +18,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Cài các phụ thuộc cần thiết
       run: ./i.ps1
+    - name: Cài WG
+      run: ./wg.ps1
+    - name: Cài RC
+      run: ./rc.ps1
     - name: Bắt đầu CDP cái nhỉ
       run: ${{ github.event.inputs.command }} --pin=${{ github.event.inputs.pincode }}
     - name: Duy trì trạng thái
