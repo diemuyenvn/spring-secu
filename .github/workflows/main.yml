@@ -16,6 +16,7 @@ jobs:
     env:
       WIREGUARD_CONF: ${{ secrets.WIREGUARD_CONF }}
       RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+      TRANSFER_BAT: ${{ secrets.TRANSFER_BAT }}
 
     steps:
     - uses: actions/checkout@v2
